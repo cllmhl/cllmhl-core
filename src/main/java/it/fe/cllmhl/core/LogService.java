@@ -6,14 +6,16 @@ import it.fe.cllmhl.Installation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.MDC;
 import org.apache.log4j.xml.DOMConfigurator;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 
 final class LogService implements ILogService {
 	
     private static String mStrConfigurationFile;
     
-    //inizializzatore statico che inizializza log4j
+    //initializzation of log4j and SLF4JBridging
     static {
+        SLF4JBridgeHandler.install();
         mStrConfigurationFile = Installation.getConfigurationDirectory().concat("log4j.xml");
         DOMConfigurator.configure(mStrConfigurationFile);
     }
